@@ -1,0 +1,33 @@
+<!-- todo/templates/todo/todo_list.html -->
+
+{% extends 'todo/base.html' %}
+{% block content %}
+
+<h2>
+    {% if user.role == 'admin' %}
+        All Tasks (Admin)
+    {% else %}
+        My Tasks
+    {% endif %}
+</h2>
+
+{% if todo %}
+    {% for todo in todo %}
+    <div class="todo-item {% if todo.completed %}done{% endif %}">
+        <div>
+            <strong>{{ todo.title }}</strong>
+            {% if user.role == 'admin' %}
+                <small>(by {{ todo.user.username }})</small>
+            {% endif %}
+        </div>
+        <div>
+            <a class="btn edit" href="{% url 'todo_update' todo.pk %}">Edit</a>
+            <a class="btn delete" href="{% url 'todo_delete' todo.pk %}">Delete</a>
+        </div>
+    </div>
+    {% endfor %}
+{% else %}
+    <p>No tasks yet. <a href="{% url 'todo_create' %}">Add one!</a></p>
+{% endif %}
+
+{% endblock %}

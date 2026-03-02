@@ -1,0 +1,39 @@
+<!-- todos/templates/todos/base.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo App</title>
+    <style>
+        body { font-family: Arial; max-width: 700px; margin: 50px auto; padding: 0 20px; }
+        .nav { background: #333; padding: 10px; margin-bottom: 20px; }
+        .nav a { color: white; margin-right: 15px; text-decoration: none; }
+        .nav span { color: #aaa; float: right; }
+        input, select, button { padding: 8px; margin: 5px 0; }
+        input[type="text"] { width: 100%; box-sizing: border-box; }
+        button { background: #333; color: white; border: none; cursor: pointer; padding: 8px 20px; }
+        .todo-item { padding: 10px; border: 1px solid #ddd; margin: 5px 0; display: flex; justify-content: space-between; align-items: center; }
+        .todo-item.done { background: #e8f5e9; text-decoration: line-through; color: #888; }
+        .error { color: red; }
+        .role-badge { background: #007bff; color: white; padding: 2px 8px; border-radius: 10px; font-size: 12px; }
+        .role-badge.admin { background: #dc3545; }
+        a.btn { background: #333; color: white; padding: 5px 10px; text-decoration: none; font-size: 13px; }
+        a.btn.delete { background: #dc3545; }
+        a.btn.edit { background: #28a745; }
+    </style>
+</head>
+<body>
+    {% if user.is_authenticated %}
+    <div class="nav">
+        <a href="{% url 'todo_list' %}">Todos</a>
+        <a href="{% url 'todo_create' %}">+ Add</a>
+        <a href="{% url 'logout' %}">Logout</a>
+        <span>{{ user.username }} 
+            <span class="role-badge {% if user.role == 'admin' %}admin{% endif %}">{{ user.role }}</span>
+        </span>
+    </div>
+    {% endif %}
+
+    {% block content %}{% endblock %}
+</body>
+</html>
