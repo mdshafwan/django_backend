@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-1oj_cx_^n(dc(k9zcllzs!)=*m1+j3!q&m9)-n+mofwm%zzl7t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['13.60.206.136', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -120,4 +120,5 @@ STATIC_URL = "static/"
 
 AUTH_USER_MODEL = 'todo.CustomerUser'
 LOGIN_URL = 'login'
+
 LOGIN_REDIRECT_URL = 'todo_list'
