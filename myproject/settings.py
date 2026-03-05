@@ -51,6 +51,12 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ]
+}
+
 ROOT_URLCONF = "myproject.urls"
 
 TEMPLATES = [
@@ -122,5 +128,6 @@ AUTH_USER_MODEL = 'todo.CustomerUser'
 LOGIN_URL = 'login'
 
 LOGIN_REDIRECT_URL = 'todo_list'
+
 
 
